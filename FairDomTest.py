@@ -15,7 +15,8 @@ import os
 import random
 import pickle
 
-runName = "fairdomTest"
+runName = "tor0"
+varName = "fairdomTest"
 RS= {}
 
 working_dir = os.path.abspath('')
@@ -109,7 +110,7 @@ for i in range(3):
     fitter = SBS.ModelFitter(r, PEFPath, estVar)
     fitter.fitModel()
     fitter.plotFitAll()
-    plt.savefig(os.path.join(figDir, "TC-"+str(i)+".png"))
+    plt.savefig(os.path.join(figDir, runName+"-"+varName+"-TC"+str(i)+".png"))
     r = fitter.getFittedModel()
     temp = {param:r[param] for param in estVar}
     temp['chisqr']=fitter.minimizerResult.chisqr
@@ -119,7 +120,7 @@ for i in range(3):
     params.append(temp)
 params = pd.DataFrame(params)
 
-f = open(os.path.join(dataDir, "params-"+runName+".p") , mode='wb')
+f = open(os.path.join(dataDir, runName+"-"+varName+"-params.p") , mode='wb')
 pickle.dump(params, f)
 f.close()
 
