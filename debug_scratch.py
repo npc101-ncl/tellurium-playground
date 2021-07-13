@@ -162,7 +162,8 @@ class modelDebugger:
         mySelections = ['time',self.errorRetVar]
         if isinstance(overrides,dict):
             for k,v in overrides.items():
-                r[k]=v
+                r["init("+k+")"]=v
+            r.resetAll()
         outs = r.simulate(start, end, intervals, selections=mySelections)
         for i in range(outs.shape[0]):
             if outs[i,1]>0:
